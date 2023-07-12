@@ -4,6 +4,7 @@ config();
 
 import { useState } from "react";
 import axios from "axios";
+import Sidebar from "./components/sidebar";
 
 
 export default function Home() {
@@ -23,8 +24,8 @@ export default function Home() {
       const url = 'https://api.openai.com/v1/chat/completions';
 
       const headers = {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`
+        "Content-type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
       };
 
       const data = {
@@ -44,18 +45,20 @@ export default function Home() {
   
 
   return (
-    <div>
-      <h1>Hello, world!</h1>
+    <div className="min-h-screen h-screen bg-gray-200">
+      
+      <Sidebar />
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="hey hat...." onChange={e => setUserInput(e.target.value)}/>
+        <input
+          type="text"
+          placeholder="hey hat...."
+          onChange={(e) => setUserInput(e.target.value)}
+        />
         <button>submit</button>
       </form>
-      {chatLog.map((message, index ) => {
-        return (
-          <div key={index}>{message.message}</div>
-        )
+      {chatLog.map((message, index) => {
+        return <div key={index}>{message.message}</div>;
       })}
-
     </div>
-  )
+  );
 }
