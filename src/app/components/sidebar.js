@@ -32,10 +32,10 @@ const Sidebar = () => {
         <RiChatVoiceFill className="text-customPurple " />
       </div>
       <div className=" h-[40%] flex flex-col justify-evenly">
-        <RiUser2Line onClick={() => handleTabClick('profile')} className="hover:text-customPurple"/>
-        <BiMessageSquareDots onClick={() => handleTabClick('chats')} className="hover:text-customPurple"/>
+        <RiUser2Line onClick={() => handleTabClick('profile')} className="hover:text-customPurple cursor-pointer"/>
+        <BiMessageSquareDots onClick={() => handleTabClick('chats')} className="hover:text-customPurple cursor-pointer"/>
         <TbUsers className="hover:text-customPurple"/>
-        <FiSettings onClick={() => handleTabClick('settings')} className="hover:text-customPurple"/>
+        <FiSettings onClick={() => handleTabClick('settings')} className="hover:text-customPurple cursor-pointer"/>
       </div>
       <div>
         <BsMoon className=""/>
