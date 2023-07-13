@@ -41,7 +41,8 @@ const Sidebar = () => {
         <BsMoon className=""/>
       </div>
     </div>
-    <div>
+    <div className="w-[20%]"
+    >
         {activeTab === 'profile'  && <Profile />}
         {activeTab === 'chats' && <Chats />}
         {activeTab === 'settings' && <Settings />}

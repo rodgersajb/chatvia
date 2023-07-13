@@ -36,7 +36,7 @@ const Profile = () => {
   };
   return (
     <>
-      <div className="w-[20%] flex flex-col items-center justify-between text-xs bg-customLightGrey">
+      <div className="w-[100%] flex flex-col items-center justify-between text-xs bg-customLightGrey">
         <div className="flex items-center justify-between w-[90%] py-2">
           <h2 className="text-sm text-black font-bold">My Profile</h2>
           <BiDotsVerticalRounded className="text-black" />
