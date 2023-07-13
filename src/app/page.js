@@ -14,7 +14,7 @@ export default function Home() {
   return (
     
     
-    <div className="min-h-screen h-screen flex ">
+    <div className="min-h-screen h-screen flex font-sans">
       
       <Sidebar />
       <Conversations />

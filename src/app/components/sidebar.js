@@ -27,7 +27,7 @@ const Sidebar = () => {
     }
   return (
     <>
-    <div className="h-full w-[5%] flex flex-col justify-between items-center">
+    <div className="h-full w-[5%] flex flex-col justify-between items-center py-2">
       <div>
         <RiChatVoiceFill className="text-customPurple " />
       </div>

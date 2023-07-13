@@ -45,7 +45,7 @@ const Conversations = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="hey hat...."
+          placeholder="Enter Message..."
           onChange={(e) => setUserInput(e.target.value)}
         />
         <button>submit</button>
