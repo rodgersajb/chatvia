@@ -6,8 +6,10 @@ import { BiSearch } from "react-icons/bi";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineVideoCamera } from "react-icons/ai";
 import { TbUsers } from "react-icons/tb";
+import { MdInsertEmoticon } from "react-icons/md";
+import { RiAttachmentLine, RiSendPlane2Fill } from "react-icons/ri";
 
-
+import classNames from "classnames";
 
 const Conversations = () => {
   const [userInput, setUserInput] = useState("");
@@ -43,7 +45,7 @@ const Conversations = () => {
       console.log(response);
       setChatLog((prevChat) => [
         ...prevChat,
-        { type: "bot", message: response.data.choices[0].message.content },
+        { type: "bot", message: response.data.choices[0].message.content, timestamp: new Date() },
       ]);
       setLoading(false);
     });
@@ -63,22 +65,53 @@ const Conversations = () => {
             <AiOutlineVideoCamera />
             <TbUsers />
             <BsThreeDots />
-
-
           </div>
         </div>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter Message..."
-            onChange={(e) => setUserInput(e.target.value)}
-          />
-          <button>submit</button>
-        </form>
-        {chatLog.map((message, index) => {
-          return <div key={index}>{message.message}</div>;
-        })}
+        <div className="h-[90%] flex justify-between">
+          {chatLog.map((message, index) => {
+            const messageClass = classNames("message", {
+              "user-message": message.type === "user",
+              "bot-message": message.type === "bot",
+            });
+            return (
+              <div key={index} className={messageClass}>
+                <h3
+                  className={`text-sm ${
+                    message.type === "user"
+                      ? "bg-customPurple text-white ml-4"
+                      : "bg-gray-200 mt-10"
+                  } max-w-max p-2 rounded-sm mr-4`}
+                >
+                  {message.message}
+                </h3>
+                
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center w-[100%] px-2"
+          >
+            <input
+              type="text"
+              placeholder="Enter Message..."
+              onChange={(e) => setUserInput(e.target.value)}
+              className="w-[85%] bg-gray-300 p-1 rounded-md"
+            />
+            <div className="w-[15%] flex gap-1 justify-evenly items-center py-2">
+              <MdInsertEmoticon className="text-customPurple" />
+              <RiAttachmentLine className="text-customPurple" />
+              <button
+                onClick={() => handleSubmit}
+                className="bg-customPurple h-[100%] rounded-md p-2"
+              >
+                <RiSendPlane2Fill className="text-l h-[100%] text-white" />
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
