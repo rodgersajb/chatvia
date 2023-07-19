@@ -67,24 +67,25 @@ const Conversations = () => {
             <BsThreeDots />
           </div>
         </div>
-        <div className="h-[90%] flex justify-between">
+        <div className="h-[90%] flex flex-col">
           {chatLog.map((message, index) => {
             const messageClass = classNames("message", {
               "user-message": message.type === "user",
-              "bot-message": message.type === "bot",
+              "bot-message flex justify-end": message.type === "bot",
             });
+
+           
             return (
               <div key={index} className={messageClass}>
                 <h3
-                  className={`text-sm ${
+                  className={`text-sm  ${
                     message.type === "user"
-                      ? "bg-customPurple text-white ml-4"
-                      : "bg-gray-200 mt-10"
-                  } max-w-max p-2 rounded-sm mr-4`}
+                      ? "bg-customPurple text-white ml-4 w-[50%]"
+                      : "bg-gray-200 mt-10 flex justify-end w-[50%] "
+                  } max-w-max p-2 rounded-sm mr-4 `}
                 >
                   {message.message}
                 </h3>
-                
               </div>
             );
           })}
