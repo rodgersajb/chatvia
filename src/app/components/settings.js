@@ -5,7 +5,7 @@ import { RiEditFill } from "react-icons/ri";
 
 import { useState } from "react";
 
-const Settings = () => {
+const Settings = ({darkMode}) => {
   const [active, setActive] = useState();
 
   const handleActive = (index) => {
@@ -47,7 +47,7 @@ const Settings = () => {
   ];
 
   return (
-    <div className="bg-gray-200 pb-4">
+    <div className={`bg-customLightGrey pb-4 h-[100%] ${darkMode ? "bg-slate-800 text-white" : ""}`}>
       <h2 className="p-2 font-semibold">Settings</h2>
       <div>
         <div className=" flex items-center justify-center">
@@ -57,9 +57,9 @@ const Settings = () => {
           </h5>
         </div>
         <div className="flex justify-center flex-col items-center">
-          <h4>Alex Rodgers</h4>
-          <div className="flex items-center gap-1 pb-4">
-            <h5 className="text-xs text-gray-400 ">Available</h5>
+          <h4 className="text-xs font-semibold pt-3">Alex Rodgers</h4>
+          <div className="flex items-center gap-1 pb-4 pt-1">
+            <h5 className="text-xs text-gray-400 font-semibold  ">Available</h5>
             <IoChevronDown className="text-xs text-gray-400 " />
           </div>
         </div>

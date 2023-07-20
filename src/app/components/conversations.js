@@ -12,7 +12,7 @@ import { CiClock2 } from "react-icons/ci";
 
 import classNames from "classnames";
 
-const Conversations = () => {
+const Conversations = ({darkMode}) => {
   const [userInput, setUserInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,19 +46,23 @@ const Conversations = () => {
       console.log(response);
       setChatLog((prevChat) => [
         ...prevChat,
-        { type: "bot", message: response.data.choices[0].message.content, timestamp: new Date() },
+        {
+          type: "bot",
+          message: response.data.choices[0].message.content,
+          timestamp: new Date(),
+        },
       ]);
       setLoading(false);
     });
   };
   return (
     <>
-      <div className="w-[100%] py-1">
+      <div className={`w-[100%] py-1 ${darkMode ? "bg-slate-900 text-white" : "bg-white"}`}>
         <div className="flex justify-between items-center w-[100%] px-2">
-          <div className="flex items-center justify-evenly">
+          <div className="flex items-center justify-evenly gap-1">
             <span></span>
-            <h5>Doris Brown</h5>
-            <BsFillRecordCircleFill />
+            <h5>Alex Rodgers</h5>
+            <BsFillRecordCircleFill className="text-xs text-green-300 mt-1" />
           </div>
           <div className="flex justify-evenly w-[20%]">
             <BiSearch />
@@ -75,7 +79,6 @@ const Conversations = () => {
               "bot-message flex justify-end": message.type === "bot",
             });
 
-           
             return (
               <div key={index} className={messageClass}>
                 <h3
@@ -86,7 +89,16 @@ const Conversations = () => {
                   } max-w-max p-2 rounded-sm mr-4 `}
                 >
                   {message.message}
-                  <span className={`flex items-center gap-1 text-xs ${message.type === "user" ? "text-white justify-end" : "text-gray-400 justify-start" } `}><CiClock2 className="text-xs" />{new Date(message.timestamp).toLocaleTimeString()}</span>
+                  <span
+                    className={`flex items-center gap-1 text-xs ${
+                      message.type === "user"
+                        ? "text-white justify-end"
+                        : "text-gray-400 justify-start"
+                    } `}
+                  >
+                    <CiClock2 className="text-xs" />
+                    {new Date(message.timestamp).toLocaleTimeString()}
+                  </span>
                 </h3>
               </div>
             );
@@ -95,20 +107,21 @@ const Conversations = () => {
         <div className="fixed w-[80%] mb-1 bg-white">
           <form
             onSubmit={handleSubmit}
-            className="flex items-center w-[100%] px-2"
+            className={`flex items-center w-[100%] px-2 pb-1 ${darkMode ? "bg-slate-900 text-white" : "bg-white"}`}
           >
             <input
               type="text"
               placeholder="Enter Message..."
+              value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              className="w-[85%] bg-gray-300 p-1 rounded-md"
+              className={`w-[85%] bg-customGrey p-1 rounded-md  ${darkMode ? "bg-slate-800" : ""} `}
             />
-            <div className="w-[15%] flex gap-1 justify-evenly items-center py-2">
-              <MdInsertEmoticon className="text-customPurple" />
-              <RiAttachmentLine className="text-customPurple" />
+            <div className="w-[15%] flex gap-1 justify-evenly items-center py-2 ">
+              <MdInsertEmoticon className="text-customPurple " />
+              <RiAttachmentLine className="text-customPurple " />
               <button
-                onClick={() => handleSubmit}
-                className="bg-customPurple h-[100%] rounded-md p-2"
+                onClick={handleSubmit}
+                className="bg-customPurple h-[100%] rounded-md p-2 "
               >
                 <RiSendPlane2Fill className="text-l h-[100%] text-white" />
               </button>
