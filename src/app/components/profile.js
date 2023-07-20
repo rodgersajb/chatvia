@@ -21,6 +21,7 @@ const Profile = () => {
       time: "11:40 AM",
       location: "Oshawa, ON",
     },
+    
   ];
 
   // handleActive function with index passed as variable
@@ -83,9 +84,9 @@ const Profile = () => {
                   className="transitions duration-300 ease-out cursor-pointer"
                 />
               </div>
-              <div>
+              <div className="transition duration-300 ease-in">
                 {active === index ? (
-                  <div className="transitions duration-300 ease-in bg-white px-2 py-2">
+                  <div className="transition duration-300 ease-in bg-white px-2 py-2">
                     <div className="pb-2">
                       <h5 className="pb-1">Name</h5>
                       <p>{accordion.name}</p>

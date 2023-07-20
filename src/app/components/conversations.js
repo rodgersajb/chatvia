@@ -8,6 +8,7 @@ import { AiOutlineVideoCamera } from "react-icons/ai";
 import { TbUsers } from "react-icons/tb";
 import { MdInsertEmoticon } from "react-icons/md";
 import { RiAttachmentLine, RiSendPlane2Fill } from "react-icons/ri";
+import { CiClock2 } from "react-icons/ci";
 
 import classNames from "classnames";
 
@@ -20,7 +21,7 @@ const Conversations = () => {
     event.preventDefault();
     setChatLog((prevChat) => [
       ...prevChat,
-      { type: "user", message: userInput },
+      { type: "user", message: userInput, timestamp: new Date() },
     ]);
     sendMessage(userInput);
     setUserInput("");
@@ -67,7 +68,7 @@ const Conversations = () => {
             <BsThreeDots />
           </div>
         </div>
-        <div className="h-[90%] flex flex-col">
+        <div className="h-[90%] flex flex-col overflow-y-scroll">
           {chatLog.map((message, index) => {
             const messageClass = classNames("message", {
               "user-message": message.type === "user",
@@ -78,19 +79,20 @@ const Conversations = () => {
             return (
               <div key={index} className={messageClass}>
                 <h3
-                  className={`text-sm  ${
+                  className={`text-sm flex flex-col ${
                     message.type === "user"
                       ? "bg-customPurple text-white ml-4 w-[50%]"
-                      : "bg-gray-200 mt-10 flex justify-end w-[50%] "
+                      : "bg-gray-200 mt-10 flex justify-start w-[50%] overflow-hidden "
                   } max-w-max p-2 rounded-sm mr-4 `}
                 >
                   {message.message}
+                  <span className={`flex items-center gap-1 text-xs ${message.type === "user" ? "text-white justify-end" : "text-gray-400 justify-start" } `}><CiClock2 className="text-xs" />{new Date(message.timestamp).toLocaleTimeString()}</span>
                 </h3>
               </div>
             );
           })}
         </div>
-        <div>
+        <div className="fixed w-[80%] mb-1 bg-white">
           <form
             onSubmit={handleSubmit}
             className="flex items-center w-[100%] px-2"
